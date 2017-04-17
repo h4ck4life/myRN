@@ -33,7 +33,7 @@ class AlbumList extends Component {
 
     _getAlbumList() {
         var _componentScope = this;
-        Axios.get('https://api.myjson.comx/bins/1csnrf', { timeout: 5000 })
+        Axios.get('https://api.myjson.com/bins/1csnrf', { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
