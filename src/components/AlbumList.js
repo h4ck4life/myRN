@@ -6,13 +6,21 @@ import Spinner from 'react-native-spinkit';
 
 class AlbumList extends Component {
 
-    state = {
-        albums: [],
-        spinnerType: 'ThreeBounce',
-        spinnerSize: 70,
-        spinnerColor: "#aaaaaa",
-        spinnerIsVisible: true,
-        refreshing: false
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            albums: [],
+            spinnerType: 'ThreeBounce',
+            spinnerSize: 70,
+            spinnerColor: "#aaaaaa",
+            spinnerIsVisible: true,
+            refreshing: false
+        }
+
+        this._onRefresh = this._onRefresh.bind(this);
+        this._reset = this._reset.bind(this);
     }
 
     _onRefresh() {
@@ -29,38 +37,37 @@ class AlbumList extends Component {
             spinnerIsVisible: false,
             refreshing: false
         });
-        self._getAlbumList();
     }
 
     _getAlbumList() {
-        Axios.get('https://api.myjson.comx/bins/1csnrf', { timeout: 5000 })
+        var parent = this;
+        Axios.get('https://api.myjson.com/bins/1csnrf', { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
                     'Oops cant get data from remote API, ' + error.message,
                     [
                         {
-                            text: 'Retry', onPress: function () {
-                                this._reset();
-                                this._getAlbumList();
+                            text: 'Retry', onPress: () => {
+                                parent._reset();
                             }
                         },
                         {
                             text: 'OK', onPress: () => {
-                                this._reset();
+                                parent._reset();
                             }
                         }
-                    ]
+                    ],
+                    { cancelable: false }
                 );
             })
             .then(response => {
-                if (response) {
-                    this.setState({
-                        albums: response.data,
-                        spinnerIsVisible: false,
-                        refreshing: false
-                    });
-                }
+                this.setState({
+                    albums: response.data || [],
+                    spinnerIsVisible: false,
+                    refreshing: false
+                });
+
             });
     }
 
