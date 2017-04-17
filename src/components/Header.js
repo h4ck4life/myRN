@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 // Make a component
 const Header = (props) => {
@@ -11,6 +12,10 @@ const Header = (props) => {
         </View>
     );
 };
+
+Header.propTypes = {
+    headerText: PropTypes.string.isRequired
+}
 
 const styles = {
     viewStyle: {

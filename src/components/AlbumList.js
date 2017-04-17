@@ -15,15 +15,15 @@ class AlbumList extends Component {
         refreshing: false
     }
 
-    onRefresh() {
+     _onRefresh() {
         this.setState({ refreshing: true });
          this.setState({
              albums: []
          });
-        this.getAlbumList();
+        this._getAlbumList();
     }
 
-    getAlbumList() {
+    _getAlbumList() {
         axios.get('https://api.myjson.com/bins/1csnrf')
             .then(response => {
                 this.setState({
@@ -35,10 +35,10 @@ class AlbumList extends Component {
     }
 
     componentWillMount() {
-        this.getAlbumList();
+        this._getAlbumList();
     }
 
-    showSpinner() {
+    _showSpinner() {
         return (
             <View style={styles.container}>
                 <Spinner style={styles.spinner} isVisible={this.state.spinnerIsVisible} size={this.state.spinnerSize} type={this.state.spinnerType} color={this.state.spinnerColor} />
@@ -46,7 +46,7 @@ class AlbumList extends Component {
         );
     }
 
-    renderAlbums() {
+    _renderAlbums() {
         return this.state.albums.map(album =>
             <AlbumDetail key={album.title} album={album} />
         );
@@ -58,12 +58,12 @@ class AlbumList extends Component {
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
-                        onRefresh={this.onRefresh.bind(this)}
+                        onRefresh={this._onRefresh.bind(this)}
                     />
                 }
             >
-                {this.showSpinner()}
-                {this.renderAlbums()}
+                {this._showSpinner()}
+                {this._renderAlbums()}
             </ScrollView>
         );
     }
