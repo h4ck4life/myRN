@@ -21,6 +21,7 @@
         "valid-typeof": "warn"
     },
     "extends": [
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "eslint:recommended"
     ]
 }

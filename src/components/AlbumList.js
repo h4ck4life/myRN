@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, View, RefreshControl } from 'react-native';
-import axios from 'axios';
+import Axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 import Spinner from 'react-native-spinkit';
 
@@ -24,7 +24,7 @@ class AlbumList extends Component {
     }
 
     _getAlbumList() {
-        axios.get('https://api.myjson.com/bins/1csnrf')
+        Axios.get('https://api.myjson.com/bins/1csnrf')
             .then(response => {
                 this.setState({
                     albums: response.data,
