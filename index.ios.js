@@ -1,53 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, View, Alert } from 'react-native';
+import Header from './src/components/Header';
+import AlbumList from './src/components/AlbumList';
+import { AdMobBanner } from 'react-native-admob'
 
-export default class myRN extends Component {
+// Create a component
+class App extends Component {
+
+  _bannerError(err) {
+    Alert.alert(
+      'Admob Error',
+      'Oops ads cant be served, ' + err,
+      [
+        { text: 'OK', onPress: () => "" },
+      ]
+    );
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={{ flex: 1 }}>
+        <Header headerText={'Albums'} />
+        <AlbumList />
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-9221126498873830/7277608582"
+          testDeviceID=""
+          didFailToReceiveAdWithError={this._bannerError} />
       </View>
     );
   }
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('myRN', () => myRN);
+// Render it to the device
+AppRegistry.registerComponent('myRN', () => App);

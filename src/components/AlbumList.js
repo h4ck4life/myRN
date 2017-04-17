@@ -40,7 +40,7 @@ class AlbumList extends Component {
     }
 
     _getAlbumList() {
-        var parent = this;
+        var _componentScope = this;
         Axios.get('https://api.myjson.com/bins/1csnrf', { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
@@ -49,12 +49,12 @@ class AlbumList extends Component {
                     [
                         {
                             text: 'Retry', onPress: () => {
-                                parent._reset();
+                                _componentScope._reset();
                             }
                         },
                         {
                             text: 'OK', onPress: () => {
-                                parent._reset();
+                                _componentScope._reset();
                             }
                         }
                     ],
