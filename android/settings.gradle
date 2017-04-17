@@ -1,7 +1,0 @@
-rootProject.name = 'myRN'
-include ':react-native-admob'
-project(':react-native-admob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-admob/android')
-
-include ':app'
-include ':react-native-spinkit'
-project(':react-native-spinkit').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-spinkit/android')
