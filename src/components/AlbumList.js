@@ -6,21 +6,13 @@ import Spinner from 'react-native-spinkit';
 
 class AlbumList extends Component {
 
-    constructor(props) {
-
-        super(props);
-
-        this.state = {
-            albums: [],
-            spinnerType: 'ThreeBounce',
-            spinnerSize: 70,
-            spinnerColor: "#aaaaaa",
-            spinnerIsVisible: true,
-            refreshing: false
-        }
-
-        this._onRefresh = this._onRefresh.bind(this);
-        this._reset = this._reset.bind(this);
+    state = {
+        albums: [],
+        spinnerType: 'ThreeBounce',
+        spinnerSize: 70,
+        spinnerColor: "#aaaaaa",
+        spinnerIsVisible: true,
+        refreshing: false
     }
 
     _onRefresh() {
@@ -41,7 +33,7 @@ class AlbumList extends Component {
 
     _getAlbumList() {
         var _componentScope = this;
-        Axios.get('https://api.myjson.com/bins/1csnrf', { timeout: 5000 })
+        Axios.get('https://api.myjson.comx/bins/1csnrf', { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
