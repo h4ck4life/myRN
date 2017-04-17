@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, DrawerLayoutAndroid, Text } from 'react-native';
+import { AppRegistry, View, DrawerLayoutAndroid, Text, Alert } from 'react-native';
 import Header from './src/components/Header';
 import AlbumList from './src/components/AlbumList';
+import { AdMobBanner } from 'react-native-admob'
 
 // Create a component
 class App extends Component {
+
+  _bannerError(err) {
+    Alert.alert(
+      'Alert Title',
+      'Oops ads cant be served, ' + err,
+      [
+        { text: 'OK', onPress: () => "" },
+      ]
+    );
+  }
 
   render() {
 
@@ -22,6 +33,11 @@ class App extends Component {
         <View style={{ flex: 1 }}>
           <Header headerText={'Albums'} />
           <AlbumList />
+          <AdMobBanner
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-9221126498873830/7277608582"
+            testDeviceID=""
+            didFailToReceiveAdWithError={this._bannerError} />
         </View>
       </DrawerLayoutAndroid>
     );
