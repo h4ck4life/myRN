@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, DrawerLayoutAndroid, Text, Alert } from 'react-native';
+import { AppRegistry, View, DrawerLayoutAndroid, Text, Alert, Platform } from 'react-native';
 import Header from './src/components/Header';
 import AlbumList from './src/components/AlbumList';
-import { AdMobBanner } from 'react-native-admob'
+import { AdMobBanner } from 'react-native-admob';
+import { setCustomText } from 'react-native-global-props';
+
+// Setting default styles for all Text components.
+const customTextProps = {
+  style: {
+    fontSize: 13,
+    fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'notoserif',
+    color: 'black',
+    fontStyle: 'bold'
+  }
+};
+setCustomText(customTextProps);
 
 // Create a component
 class App extends Component {
