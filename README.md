@@ -8,6 +8,6 @@
 * Custom spinner animation
 * Admob integration
 * Alert dialog
-* Custom font globally in app
+* Global custom font type
 
 _(Based on React Native version 0.43)_
