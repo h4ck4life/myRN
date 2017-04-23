@@ -19,18 +19,38 @@ setCustomText(customTextProps);
 // Create a component
 class App extends Component {
 
+  state = {
+    showAds: true
+  }
+
   _bannerError(err) {
+    this.setState({ showAds: false });
     Alert.alert(
       'Admob Error',
       'Oops ads cant be served, ' + err,
       [
         { text: 'OK', onPress: () => "" },
-      ]
+      ],
+      { cancelable: false }
     );
   }
 
-  render() {
+  _renderAds() {
+    console.log(this.state.showAds);
+    if (this.state.showAds === true) {
+      return (
+        <AdMobBanner
+          bannerSize="fullBanner"
+          adUnitID="ca-app-pub-9221126498873830/7277608582"
+          testDeviceID=""
+          didFailToReceiveAdWithError={this._bannerError.bind(this)} />
+      )
+    } else {
+      return null;
+    }
+  }
 
+  render() {
     var _navigationView = (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>I'm in the Drawer!</Text>
@@ -45,11 +65,7 @@ class App extends Component {
         <View style={{ flex: 1 }}>
           <Header headerText={'Albums'} />
           <AlbumList />
-          <AdMobBanner
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-9221126498873830/7277608582"
-            testDeviceID=""
-            didFailToReceiveAdWithError={this._bannerError} />
+          {this._renderAds()}
         </View>
       </DrawerLayoutAndroid>
     );

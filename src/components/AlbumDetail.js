@@ -3,6 +3,7 @@ import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
 const AlbumDetail = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album;
@@ -44,6 +45,10 @@ const AlbumDetail = ({ album }) => {
         </Card>
     );
 };
+
+AlbumDetail.propTypes = {
+    album: PropTypes.any.isRequired
+}
 
 const styles = {
     headerContentStyle: {
