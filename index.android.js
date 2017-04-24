@@ -36,7 +36,6 @@ class App extends Component {
   }
 
   _renderAds() {
-    console.log(this.state.showAds);
     if (this.state.showAds === true) {
       return (
         <AdMobBanner

@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const AlbumDetail = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album;
     const {
-    thumbnailStyle,
+        thumbnailStyle,
         headerContentStyle,
         thumbnailContainerStyle,
         headerTextStyle,
@@ -40,7 +40,7 @@ const AlbumDetail = ({ album }) => {
             <CardSection>
                 <Button onPress={() => Linking.openURL(url)}>
                     Buy Now
-        </Button>
+                </Button>
             </CardSection>
         </Card>
     );

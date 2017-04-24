@@ -1,22 +1,37 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const amazonIcon = (<Icon style={{}} name="amazon" size={18} color="#fff" />)
 
 const Button = ({ onPress, children }) => {
-    const { buttonStyle, textStyle } = styles;
+
+    const {
+        buttonStyle,
+        textStyle,
+        textIconStyle,
+        buttonIconStyle
+    } = styles;
 
     return (
-        <TouchableOpacity onPress={onPress} style={buttonStyle}>
+        <TouchableOpacity onPress={onPress} style={buttonStyle} activeOpacity={0.7}>
             <Text style={textStyle}>
-                {children}
+                {amazonIcon}  {children}
             </Text>
         </TouchableOpacity>
     );
 };
 
+Button.propTypes = {
+    onPress: PropTypes.any.isRequired,
+    children: PropTypes.any.isRequired
+}
+
 const styles = {
     textStyle: {
         alignSelf: 'center',
-        color: '#007aff',
+        color: '#fff',
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,
@@ -25,10 +40,10 @@ const styles = {
     buttonStyle: {
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: '#fff',
+        backgroundColor: '#EA9004',
         borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#007aff',
+        // borderWidth: 1,
+        // borderColor: '#EA9004',
         marginLeft: 5,
         marginRight: 5
     }
