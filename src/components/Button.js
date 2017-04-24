@@ -9,9 +9,7 @@ const Button = ({ onPress, children }) => {
 
     const {
         buttonStyle,
-        textStyle,
-        textIconStyle,
-        buttonIconStyle
+        textStyle
     } = styles;
 
     return (

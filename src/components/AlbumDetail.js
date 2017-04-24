@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, View, Image, Linking } from 'react-native';
+import { Text, View, Image, Linking, Share } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
+import SocialShare from './SocialShare';
 import PropTypes from 'prop-types';
 
 const AlbumDetail = ({ album }) => {
-    //const { title, artist, thumbnail_image, image, url } = album;
+
     const url = 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dmovies-tv&field-keywords=';
     const { Title, Year, Poster, image } = album;
     const {
@@ -43,6 +44,9 @@ const AlbumDetail = ({ album }) => {
                 <Button onPress={() => Linking.openURL(url + Title)}>
                     Buy Now
                 </Button>
+                <SocialShare title={'Share to..'} msg={'Checkout this movie ' + url + Title + ' #reactnative #react'} url={url + Title} >
+                    Share
+                </SocialShare>
             </CardSection>
         </Card>
     );
