@@ -44,7 +44,7 @@ const AlbumDetail = ({ album }) => {
                 <Button onPress={() => Linking.openURL(url + Title)}>
                     Buy Now
                 </Button>
-                <SocialShare title={'Share to..'} msg={'Checkout this movie ' + url + Title + ' #reactnative #react'} url={url + Title} >
+                <SocialShare title={'Share to..'} msg={'Checkout this movie ' + url + encodeURIComponent(Title) + ' #reactnative #react'} url={url + encodeURIComponent(Title)} >
                     Share
                 </SocialShare>
             </CardSection>
