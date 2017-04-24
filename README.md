@@ -9,5 +9,6 @@
 * Admob integration
 * Alert dialog
 * Global custom font type
+* React Native SVG Icon
 
 _(Based on React Native version 0.43)_
