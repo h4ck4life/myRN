@@ -85,6 +85,7 @@ class AlbumList extends Component {
     render() {
         return (
             <ScrollView
+                style={{backgroundColor: '#F3F3F3'}}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}

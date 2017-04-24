@@ -44,7 +44,7 @@ class App extends Component {
     if (this.state.showAds === true) {
       return (
         <AdMobBanner
-          bannerSize="smartBannerPortrait"
+          bannerSize="smartBannerLandscape"
           adUnitID="ca-app-pub-9221126498873830/7277608582"
           testDeviceID=""
           didFailToReceiveAdWithError={this._bannerError.bind(this)} />
@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <DrawerLayoutAndroid
         ref={(_drawer) => this.drawer = _drawer}
-        drawerWidth={300}
+        drawerWidth={270}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => _navigationView}>
         <View style={{ flex: 1 }}>
