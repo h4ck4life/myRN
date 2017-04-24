@@ -3,7 +3,7 @@ import { Text, View, Share, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const shareIcon = (<Icon style={{}} name="share" size={18} color="#fff" />)
+const shareIcon = (<Icon style={{}} name="share" size={18} color="#333" />)
 
 class SocialShare extends Component {
 
@@ -47,7 +47,7 @@ SocialShare.PropTypes = {
 const styles = {
     textStyle: {
         alignSelf: 'center',
-        color: '#fff',
+        color: '#333',
         fontSize: 16,
         fontWeight: '600',
         paddingTop: 10,
@@ -55,10 +55,10 @@ const styles = {
     },
     buttonStyle: {
         flex: 1,
-        backgroundColor: '#30BA3C',
+        backgroundColor: '#ECEEEE',
         borderRadius: 5,
         // borderWidth: 1,
-        // borderColor: '#30BA3C',
+        // borderColor: '#ECEEEE',
         marginLeft: 5,
         marginRight: 5
     }
