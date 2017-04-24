@@ -10,5 +10,6 @@
 * Alert dialog
 * Global custom font type
 * React Native SVG Icon
+* React Native Share Component
 
 _(Based on React Native version 0.43)_
