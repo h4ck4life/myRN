@@ -32,8 +32,9 @@ class AlbumList extends Component {
     }
 
     _getAlbumList() {
+        // prev url: https://api.myjson.com/bins/1csnrf
         var _componentScope = this;
-        Axios.get('https://api.myjson.com/bins/1csnrf', { timeout: 5000 })
+        Axios.get('http://www.omdbapi.com/?s=space', { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
@@ -55,7 +56,7 @@ class AlbumList extends Component {
             })
             .then(response => {
                 this.setState({
-                    albums: response.data || [],
+                    albums: response.data.Search || [],
                     spinnerIsVisible: false,
                     refreshing: false
                 });
@@ -77,7 +78,7 @@ class AlbumList extends Component {
 
     _renderAlbums() {
         return this.state.albums.map(album =>
-            <AlbumDetail key={album.title} album={album} />
+            <AlbumDetail key={album.Title} album={album} />
         );
     }
 

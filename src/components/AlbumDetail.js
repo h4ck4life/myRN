@@ -6,7 +6,9 @@ import Button from './Button';
 import PropTypes from 'prop-types';
 
 const AlbumDetail = ({ album }) => {
-    const { title, artist, thumbnail_image, image, url } = album;
+    //const { title, artist, thumbnail_image, image, url } = album;
+    const url = 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dmovies-tv&field-keywords=';
+    const { Title, Year, Poster, image } = album;
     const {
         thumbnailStyle,
         headerContentStyle,
@@ -21,24 +23,24 @@ const AlbumDetail = ({ album }) => {
                 <View style={thumbnailContainerStyle}>
                     <Image
                         style={thumbnailStyle}
-                        source={{ uri: thumbnail_image }}
+                        source={{ uri: Poster }}
                     />
                 </View>
                 <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{title}</Text>
-                    <Text>{artist}</Text>
+                    <Text style={headerTextStyle}>{Title}</Text>
+                    <Text>Year {Year}</Text>
                 </View>
             </CardSection>
 
             <CardSection>
                 <Image
                     style={imageStyle}
-                    source={{ uri: image }}
+                    source={{ uri: Poster }}
                 />
             </CardSection>
 
             <CardSection>
-                <Button onPress={() => Linking.openURL(url)}>
+                <Button onPress={() => Linking.openURL(url + Title)}>
                     Buy Now
                 </Button>
             </CardSection>

@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Entypo';
 
-const menuIcon = (<Icon style={{}} name="menu" size={30} color="#ccc" />)
+const menuIcon = (<Icon style={{}} name="menu" size={30} color="#fff" />)
 
 // Make a component
 const Header = (props) => {
@@ -17,7 +17,7 @@ const Header = (props) => {
                     {menuIcon}
                 </View>
             </TouchableOpacity>
-            <View style={{ justifyContent: 'center', alignItems: 'stretch'}}>
+            <View style={{}}>
                 <Text style={textStyle}>{props.headerText}</Text>
             </View>
         </View>
@@ -32,7 +32,7 @@ Header.propTypes = {
 const styles = {
     viewStyle: {
         flexDirection: 'row',
-        backgroundColor: '#F8F8F8',
+        backgroundColor: '#EA9004',
         //justifyContent: 'center',
         alignItems: 'center',
         height: 60,
@@ -44,7 +44,8 @@ const styles = {
         position: 'relative'
     },
     textStyle: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#fff'
     }
 };
 
