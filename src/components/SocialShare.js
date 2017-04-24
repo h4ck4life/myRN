@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Share, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const shareIcon = (<Icon style={{}} name="share" size={18} color="#fff" />)
 
 class SocialShare extends Component {
 
@@ -28,7 +31,7 @@ class SocialShare extends Component {
         return (
             <TouchableOpacity onPress={() => this._shareText()} style={styles.buttonStyle} activeOpacity={0.7}>
                 <Text style={styles.textStyle}>
-                    {this.props.children}
+                    {shareIcon}  {this.props.children}
                 </Text>
             </TouchableOpacity>
         )
