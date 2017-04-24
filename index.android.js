@@ -19,6 +19,11 @@ setCustomText(customTextProps);
 // Create a component
 class App extends Component {
 
+  constructor() {
+    super();
+    this._openDrawer = this._openDrawer.bind(this);
+  }
+
   state = {
     showAds: true
   }
@@ -49,6 +54,10 @@ class App extends Component {
     }
   }
 
+  _openDrawer() {
+    this.drawer.openDrawer();
+  }
+
   render() {
     var _navigationView = (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -58,11 +67,12 @@ class App extends Component {
 
     return (
       <DrawerLayoutAndroid
+        ref={(_drawer) => this.drawer = _drawer}
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => _navigationView}>
         <View style={{ flex: 1 }}>
-          <Header headerText={'Albums'} />
+          <Header headerText={'Albums'} drawer={this._openDrawer} />
           <AlbumList />
           {this._renderAds()}
         </View>

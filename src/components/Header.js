@@ -1,26 +1,39 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/Entypo';
+
+const menuIcon = (<Icon style={{}} name="menu" size={30} color="#ccc" />)
 
 // Make a component
 const Header = (props) => {
+
     const { textStyle, viewStyle } = styles;
 
     return (
         <View style={viewStyle}>
-            <Text style={textStyle}>{props.headerText}</Text>
+            <TouchableOpacity onPress={() => props.drawer()}>
+                <View style={{ marginLeft: 10, marginRight: 10 }}>
+                    {menuIcon}
+                </View>
+            </TouchableOpacity>
+            <View style={{ justifyContent: 'center', alignItems: 'stretch'}}>
+                <Text style={textStyle}>{props.headerText}</Text>
+            </View>
         </View>
     );
 };
 
 Header.propTypes = {
-    headerText: PropTypes.string.isRequired
+    headerText: PropTypes.string.isRequired,
+    drawer: PropTypes.func.isRequired
 }
 
 const styles = {
     viewStyle: {
+        flexDirection: 'row',
         backgroundColor: '#F8F8F8',
-        justifyContent: 'center',
+        //justifyContent: 'center',
         alignItems: 'center',
         height: 60,
         //paddingTop: 15,
