@@ -106,7 +106,7 @@ class AlbumList extends Component {
             height = e.nativeEvent.contentSize.height,
             offset = e.nativeEvent.contentOffset.y;
         if (windowHeight + offset - 124 >= height) {
-            if (_componentScope.state.page < 4 && _componentScope.state.isFetchingAlbums == false) {
+            if (_componentScope.state.page < 6 && _componentScope.state.spinnerIsVisible == false) {
                 _componentScope.setState({ spinnerIsVisible: true });
                 _componentScope._getAlbumList();
             }
