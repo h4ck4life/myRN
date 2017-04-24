@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View, RefreshControl, Alert, Dimensions } from 
 import Axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 import Spinner from 'react-native-spinkit';
+import _ from 'lodash';
 
 class AlbumList extends Component {
 
@@ -13,29 +14,34 @@ class AlbumList extends Component {
         spinnerColor: "#aaaaaa",
         spinnerIsVisible: true,
         refreshing: false,
-        page: 1
+        page: 1,
+        isFetchingAlbums: false
     }
 
     _onRefresh() {
         this.setState({ refreshing: true });
-        this.setState({
-            albums: []
+        this.setState({ albums: [] });
+        this.setState({ page: 1 }, () => {
+            this._getAlbumList();
         });
-        this._getAlbumList();
+        //console.log('on refresh page state: ' + this.state.page);
     }
 
     _reset() {
         this.setState({
             albums: [],
             spinnerIsVisible: false,
-            refreshing: false
+            refreshing: false,
+            page: 1
         });
     }
 
     _getAlbumList() {
         // prev url: https://api.myjson.com/bins/1csnrf
         var _componentScope = this;
-        Axios.get('http://www.omdbapi.com/?s=space&page=' + _componentScope.state.page || 1, { timeout: 5000 })
+        var currentPage = _.clone(_componentScope.state.page);
+        _componentScope.setState({ isFetchingAlbums: true });
+        Axios.get('http://www.omdbapi.com/?s=space&page=' + _componentScope.state.page, { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
@@ -69,7 +75,10 @@ class AlbumList extends Component {
                         refreshing: false
                     });
                 }
-                _componentScope.setState({ page: _componentScope.state.page + 1 });
+                _componentScope.setState({ isFetchingAlbums: false });
+                var newPage = currentPage + 1;
+                _componentScope.setState({ page: newPage });
+                //console.log('Current Page: ' + newPage);
             });
     }
 
@@ -87,7 +96,7 @@ class AlbumList extends Component {
 
     _renderAlbums() {
         return this.state.albums.map(album =>
-            <AlbumDetail key={album.Title + Math.round(new Date().getTime()/1000)} album={album} />
+            <AlbumDetail key={album.Title + Math.round(new Date().getTime() / 1000)} album={album} />
         );
     }
 
@@ -97,9 +106,10 @@ class AlbumList extends Component {
             height = e.nativeEvent.contentSize.height,
             offset = e.nativeEvent.contentOffset.y;
         if (windowHeight + offset - 124 >= height) {
-            console.log('end of scroll..');
-            _componentScope.setState({ spinnerIsVisible: true });
-            _componentScope._getAlbumList();
+            if (_componentScope.state.page < 4 && _componentScope.state.isFetchingAlbums == false) {
+                _componentScope.setState({ spinnerIsVisible: true });
+                _componentScope._getAlbumList();
+            }
         }
     }
 
