@@ -108,7 +108,7 @@ class AlbumList extends Component {
         if (windowHeight + offset + 200 >= height) {
             if (_componentScope.state.page < 11 && _componentScope.state.spinnerIsVisible == false) {
                 _componentScope.setState({ spinnerIsVisible: true }, () => { _componentScope._getAlbumList() });
-                console.log('end of scroll..');
+                //console.log('end of scroll..');
             }
         }
     }
