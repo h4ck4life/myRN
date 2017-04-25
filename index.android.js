@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   state = {
-    showAds: true
+    showAds: false
   }
 
   _bannerError(err) {

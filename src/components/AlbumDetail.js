@@ -1,10 +1,18 @@
 import React from 'react';
-import { Text, View, Image, Linking, Share } from 'react-native';
+import { Text, View, Image, Linking, TouchableOpacity, Modal } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 import SocialShare from './SocialShare';
 import PropTypes from 'prop-types';
+import ImageViewer from 'react-native-image-zoom-viewer';
+
+
+const _showCoverPhoto = (imgUrl) => (
+    <Modal onRequestClose={() => { }} visible={true} transparent={false}>
+        <ImageViewer imageUrls={['https://avatars2.githubusercontent.com/u/7970947?v=3&s=460']} />
+    </Modal>
+)
 
 const AlbumDetail = ({ album }) => {
 
@@ -33,12 +41,14 @@ const AlbumDetail = ({ album }) => {
                 </View>
             </CardSection>
 
-            <CardSection>
-                <Image
-                    style={imageStyle}
-                    source={{ uri: Poster }}
-                />
-            </CardSection>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => { console.log('open photo..'); _showCoverPhoto() }}>
+                <CardSection>
+                    <Image
+                        style={imageStyle}
+                        source={{ uri: Poster }}
+                    />
+                </CardSection>
+            </TouchableOpacity>
 
             <CardSection>
                 <Button onPress={() => Linking.openURL(url + Title)}>
