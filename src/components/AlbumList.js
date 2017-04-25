@@ -95,8 +95,8 @@ class AlbumList extends Component {
     }
 
     _renderAlbums() {
-        return this.state.albums.map(album =>
-            <AlbumDetail key={album.Title + Math.round(new Date().getTime() / 1000)} album={album} />
+        return this.state.albums.map((album, index) =>
+            <AlbumDetail key={index + Math.round(new Date().getTime() / 1000)} album={album} />
         );
     }
 
@@ -107,8 +107,8 @@ class AlbumList extends Component {
             offset = e.nativeEvent.contentOffset.y;
         if (windowHeight + offset - 124 >= height) {
             if (_componentScope.state.page < 6 && _componentScope.state.spinnerIsVisible == false) {
-                _componentScope.setState({ spinnerIsVisible: true });
-                _componentScope._getAlbumList();
+                _componentScope.setState({ spinnerIsVisible: true }, () => { _componentScope._getAlbumList() });
+                console.log('end of scroll..');
             }
         }
     }

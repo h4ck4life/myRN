@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <DrawerLayoutAndroid
         ref={(_drawer) => this.drawer = _drawer}
-        drawerWidth={270}
+        drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         renderNavigationView={() => _navigationView}>
         <View style={{ flex: 1 }}>
