@@ -28,7 +28,7 @@ const AlbumDetail = ({ album }) => {
                     />
                 </View>
                 <View style={headerContentStyle}>
-                    <Text style={headerTextStyle}>{Title}</Text>
+                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={headerTextStyle}>{Title}</Text>
                     <Text>Year {Year}</Text>
                 </View>
             </CardSection>
