@@ -41,7 +41,7 @@ const AlbumDetail = ({ album }) => {
                 </View>
             </CardSection>
 
-            <TouchableOpacity activeOpacity={0.7} onPress={() => { console.log('open photo..'); _showCoverPhoto() }}>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => { _showCoverPhoto() }}>
                 <CardSection>
                     <Image
                         style={imageStyle}
