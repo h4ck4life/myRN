@@ -10,17 +10,17 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 class AlbumDetail extends Component {
 
     constructor(props) {
+        
         super(props);
 
         this.state = {
             showModal: false,
-            modalImageSource: ''
+            modalImageSource: '',
+            posterUrl: this.props.album.poster_path == null ? 'http://www.technicaltextilesfinder.com/images/NoImageAvailable.png' : 'https://image.tmdb.org/t/p/w500' + this.props.album.poster_path
         }
 
         this._url = 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dmovies-tv&field-keywords=';
     }
-
-
 
     render() {
         return (
@@ -32,29 +32,29 @@ class AlbumDetail extends Component {
                     <View style={styles.thumbnailContainerStyle}>
                         <Image
                             style={styles.thumbnailStyle}
-                            source={{ uri: this.props.album.Poster }}
+                            source={{ uri: this.state.posterUrl }}
                         />
                     </View>
                     <View style={styles.headerContentStyle}>
-                        <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.headerTextStyle}>{this.props.album.Title}</Text>
-                        <Text>Year {this.props.album.Year}</Text>
+                        <Text numberOfLines={1} ellipsizeMode={'tail'} style={styles.headerTextStyle}>{this.props.album.original_name}</Text>
+                        <Text>First Air Date: {this.props.album.first_air_date == '' ? 'Unknown' : this.props.album.first_air_date}</Text>
                     </View>
                 </CardSection>
 
-                <TouchableOpacity activeOpacity={0.7} onPress={() => { this.setState({ modalImageSource: this.props.album.Poster, showModal: true }); }}>
+                <TouchableOpacity activeOpacity={0.7} onPress={() => { this.setState({ modalImageSource: this.state.posterUrl, showModal: true }); }}>
                     <CardSection>
                         <Image
                             style={styles.imageStyle}
-                            source={{ uri: this.props.album.Poster }}
+                            source={{ uri: this.state.posterUrl }}
                         />
                     </CardSection>
                 </TouchableOpacity>
 
                 <CardSection>
-                    <Button onPress={() => Linking.openURL(this._url + this.props.album.Title)}>
+                    <Button onPress={() => Linking.openURL(this._url + this.props.album.original_name)}>
                         Buy Now
                 </Button>
-                    <SocialShare title={'Share to..'} msg={'Checkout this movie ' + this._url + encodeURIComponent(this.props.album.Title) + ' #reactnative #react'} url={this._url + encodeURIComponent(this.props.album.Title)} >
+                    <SocialShare title={'Share to..'} msg={'Checkout this movie ' + this._url + encodeURIComponent(this.props.album.original_name) + ' #reactnative #react'} url={this._url + encodeURIComponent(this.props.album.Title)} >
                         Share
                 </SocialShare>
                 </CardSection>

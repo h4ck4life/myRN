@@ -41,7 +41,7 @@ class AlbumList extends Component {
         var _componentScope = this;
         var currentPage = _.clone(_componentScope.state.page);
         _componentScope.setState({ isFetchingAlbums: true });
-        Axios.get('http://www.omdbapi.com/?s=space&page=' + _componentScope.state.page, { timeout: 5000 })
+        Axios.get('https://api.themoviedb.org/3/search/multi?api_key=94a51f34393b92707d6372d142556377&language=en-US&query=space&page=' + _componentScope.state.page, { timeout: 5000 })
             .catch(function (error) {
                 Alert.alert(
                     'API Call Error',
@@ -62,15 +62,16 @@ class AlbumList extends Component {
                 );
             })
             .then(response => {
+                //console.log(response);
                 if (_componentScope.state.page && _componentScope.state.page > 1) {
                     _componentScope.setState({
-                        albums: _componentScope.state.albums.concat(response.data.Search),
+                        albums: _componentScope.state.albums.concat(response.data.results),
                         spinnerIsVisible: false
                     });
                     //console.log(_componentScope.state.albums);
                 } else {
                     _componentScope.setState({
-                        albums: response.data.Search || [],
+                        albums: response.data.results || [],
                         spinnerIsVisible: false,
                         refreshing: false
                     });
