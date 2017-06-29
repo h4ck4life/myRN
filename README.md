@@ -13,3 +13,5 @@
 * React Native Share component
 
 _(Based on React Native version 0.43)_
+
+## Demo
